@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <link rel="stylesheet" href="{{ asset('backend/toastr.min.css') }}">
 
     <!-- Fonts -->
     <!-- CSS only -->
@@ -74,7 +75,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 @if (Auth::check())
-                    @include('inc.sidebar')
+                @include('inc.sidebar')
                 @endif
 
                 @yield('content')
@@ -86,5 +87,17 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="{{ asset('backend/toastr.min.js') }}"></script>
+<script>
+    @if (Session::has('success'))
+    toastr.success("{{Session::get('success')}}")
+    {{-- expr --}}
+    @endif
+    @if (Session::has('info'))
+    toastr.info("{{Session::get('info')}}")
+    {{-- expr --}}
+    @endif
+
+</script>
 </body>
 </html>
