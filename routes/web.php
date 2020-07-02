@@ -20,3 +20,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix'=>'admin'],function(){
+    Route::get('/add','PostController@add')->name('add.post');
+    Route::post('/store','PostController@store')->name('store.post');
+
+});
