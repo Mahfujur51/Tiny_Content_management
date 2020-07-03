@@ -5,6 +5,15 @@
         <div class="card-header">
             Add Product
         </div>
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
         <div class="card-body">
             <form action="{{ route('store.post') }}" method="post" enctype="multipart/form-data">
                 @csrf
@@ -26,7 +35,7 @@
                 </div>
                 <div class="from-group">
                     <label for="">Content Type</label>
-                    <select name="section" id="" class="form-control">
+                    <select name="type" id="" class="form-control">
                         <option value="">Select Content Type</option>
                         <option value="1">Image</option>
                         <option value="2">Video</option>
@@ -34,10 +43,10 @@
                 </div>
                 <div class="form-gorup">
                     <label for="">Video Url  (if you select Type Video)</label>
-                    <input type="text" class="form-control" name="title">
+                    <input type="text"  class="form-control" name="url">
                 </div>
                 <div class="form-gorup">
-                    <label for="">Image</label>
+                    <label for="">Image / Vidoe Thumnil</label>
                     <input type="file" class="form-control" name="image">
                 </div>
                 <div class="form-group mt-3">
