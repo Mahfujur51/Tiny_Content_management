@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $post=Post::all();
+        $s1_post=Post::Where('section',1)->get();
+        $s2_post=Post::Where('section',2)->get();
+        $uppost=Post::where('status',0)->get();
+        return view('home',compact('s1_post','post','s2_post','uppost'));
+
     }
 }
